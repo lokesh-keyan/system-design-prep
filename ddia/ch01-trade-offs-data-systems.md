@@ -8,3 +8,9 @@ There are two systems: **operational** and **analytical**.
 - **Analytical** — where data is used for analysis (reads)
 
 We divide these into two separate systems based on their data read and write patterns.
+
+**OLTP** — Online Transaction Processing
+From a developer or end-user perspective, this involves reading and writing data to the database.
+
+**OLAP** — Online Analytics Processing
+Primarily used for analysis or dashboards. Systems have also been built to display real-time data dashboards to users, even when processing large amounts of data to surface real-time metrics.
