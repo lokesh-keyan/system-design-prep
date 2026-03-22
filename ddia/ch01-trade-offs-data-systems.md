@@ -19,3 +19,5 @@ A data warehouse is a database where data is extracted, transformed, and loaded 
 This separation ensures that analytical workloads do not disturb the actual OLTP databases, as heavy queries could degrade their performance and it would be difficult to query across several disparate databases.
 
 <img src="assets/ddia_0101.png" width="500" />
+
+For ML training, data must be transformed into vectors, which makes a traditional data warehouse unsuitable. Instead, raw data is stored in **data lakes**, where it can take any form — images, videos, genome sequences, etc. This is known as the **sushi principle**: "raw is better."
