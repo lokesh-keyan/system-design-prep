@@ -26,3 +26,27 @@ There are two categories: **systems of record** and **derived data systems**. A 
 
 **Cloud vs. Self-Hosted**
 The core decision is what to build in-house versus what to outsource. For example, you could take MySQL and install it on your own hardware or on a virtual machine in the cloud (IaaS). Another option is taking an open-source database and running a customized version of it.
+
+## Cloud Native System Architecture
+
+| Category | Self-hosted Systems | Cloud Native Systems |
+|---|---|---|
+| Operational/OLTP | MySQL, PostgreSQL, MongoDB | AWS Aurora, Azure SQL DB Hyperscale, Google Cloud Spanner |
+| Analytical/OLAP | Teradata, ClickHouse, Spark | Snowflake, Google BigQuery, Azure Synapse Analytics |
+
+## Separation of Storage and Compute
+
+Hard disks are mechanical devices (or even SSDs) that can fail at any time — due to wear, power surges, manufacturing defects, etc. When a disk fails, all data on it can be permanently lost. For critical systems (databases, servers, etc.), this is unacceptable.
+
+### The Assumption of Durability
+
+In traditional computing, we treat disk storage as durable — meaning:
+
+- If you write a file and the program crashes, the file is still there
+- If you turn off the computer and turn it back on, the data persists
+
+This is in contrast to RAM (memory), which is volatile — it loses everything when power is cut. But "durable" doesn't mean "indestructible." Disks still fail, which is exactly the problem RAID solves.
+
+**RAID** stands for Redundant Array of Independent Disks. The core idea is simple: instead of trusting a single disk, spread or copy your data across multiple physical disks so that if one fails, you don't lose anything.
+
+> Think of it like making photocopies of an important document — if one copy burns, you still have the others.
