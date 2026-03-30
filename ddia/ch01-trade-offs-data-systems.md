@@ -1,4 +1,4 @@
-# Ch01 — Trade-Offs in Data Systems Architecture
+﻿# Ch01 — Trade-Offs in Data Systems Architecture
 
 ## Two Systems
 
@@ -50,3 +50,48 @@ This is in contrast to RAM (memory), which is volatile — it loses everything w
 **RAID** stands for Redundant Array of Independent Disks. The core idea is simple: instead of trusting a single disk, spread or copy your data across multiple physical disks so that if one fails, you don't lose anything.
 
 > Think of it like making photocopies of an important document — if one copy burns, you still have the others.
+
+### What "Operations" Traditionally Meant
+
+Before cloud computing, running software meant owning physical machines. The operations team was responsible for keeping those machines healthy and the services running on them alive. That included concrete, hands-on tasks like:
+
+- **Capacity planning** — if your disks are filling up, you physically add more before you run out
+- **Provisioning** — setting up new machines when you need more compute power
+- **Migration** — moving a service from one server to another (a painful, manual process)
+- **Patching** — applying OS security updates without breaking anything
+
+The mental model here is: the team manages machines, and services live on top of those machines.
+
+### How Cloud Changed the Picture
+
+Cloud providers introduced a key abstraction — they hide the machines behind an API. The passage uses storage as a concrete example:
+
+| Traditional                       | Cloud                            |
+| --------------------------------- | -------------------------------- |
+| You buy a 2TB disk                | You just store data              |
+| You plan capacity in advance      | You pay for what you use         |
+| A disk fails → your service fails | Provider handles fault tolerance |
+
+This is a profound shift. You're no longer thinking in terms of "I have 12 servers, server 7 is unhealthy" — you're thinking in terms of services and outcomes. The physical layer is someone else's problem.
+
+### The DevOps/SRE Philosophy
+
+With machines abstracted away, the operations role didn't disappear — it transformed. The passage lists five principles of this modern philosophy:
+
+- **Automation over manual work** — instead of an engineer SSHing into a machine to fix something, you write a script or pipeline that handles it repeatably. One-off fixes are fragile and undocumented.
+- **Ephemeral infrastructure** — rather than a server you carefully maintain for years (a "pet"), you spin up fresh VMs on demand and throw them away when done (treating them like "cattle"). This forces your configuration to be codified rather than tribal knowledge living on one machine.
+- **Frequent deployments** — the ability to ship small updates often, rather than large risky releases infrequently. Smaller changes are easier to reason about and roll back.
+- **Learning from incidents** — when something breaks, the team does a postmortem to understand why, not just what. The goal is systemic improvement, not blame.
+- **Knowledge preservation** — systems should be documented and automated well enough that the organization doesn't lose critical know-how when an individual engineer leaves. The knowledge lives in code and docs, not in people's heads.
+
+### Distributed Versus Single-Node Systems
+
+- **Inherent distribution** — Multi-user apps are unavoidably distributed; devices communicate over a network.
+- **Requests between cloud services** — Data living in one service but processed in another must travel over the network; microservices are inherently distributed.
+- **Fault tolerance / high availability** — Spread across multiple machines so if one fails, another takes over.
+- **Scalability** — Spread load across many machines when a single machine can't keep up.
+- **Latency** — Place servers near users geographically to reduce round-trip time.
+- **Elasticity** — Scale up during peak demand and down during idle periods; pay only for what you use.
+- **Specialized hardware** — Different workloads (storage, analytics, ML) can run on hardware optimized for them (many disks, lots of RAM, GPUs, etc.).
+- **Legal compliance** — Data residency laws in some countries require storing and processing user data within their borders.
+- **Sustainability** — Schedule jobs where and when renewable energy is available to cut carbon emissions and cost.
