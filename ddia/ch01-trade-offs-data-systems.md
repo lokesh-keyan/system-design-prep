@@ -95,3 +95,7 @@ With machines abstracted away, the operations role didn't disappear — it trans
 - **Specialized hardware** — Different workloads (storage, analytics, ML) can run on hardware optimized for them (many disks, lots of RAM, GPUs, etc.).
 - **Legal compliance** — Data residency laws in some countries require storing and processing user data within their borders.
 - **Sustainability** — Schedule jobs where and when renewable energy is available to cut carbon emissions and cost.
+
+## Microservices
+
+The best way to distribute a system is to divide it into client and server — this is called **service-oriented architecture (SOA)**. This idea has evolved into **microservices**, where each team owns its own APIs and databases. The primary motivation is organizational: it solves the "people problem" by allowing large teams to deploy changes independently. The trade-off is operational complexity — maintaining, testing, and managing the infrastructure for each service can be challenging.
