@@ -99,3 +99,7 @@ With machines abstracted away, the operations role didn't disappear — it trans
 ## Microservices
 
 The best way to distribute a system is to divide it into client and server — this is called **service-oriented architecture (SOA)**. This idea has evolved into **microservices**, where each team owns its own APIs and databases. The primary motivation is organizational: it solves the "people problem" by allowing large teams to deploy changes independently. The trade-off is operational complexity — maintaining, testing, and managing the infrastructure for each service can be challenging.
+
+### Serverless / Function as a Service (FaaS)
+
+Another approach to deploying services in which the management of the infrastructure is outsourced to a cloud vendor. You pay only for the time your application code is running, rather than having to provision resources in advance.
